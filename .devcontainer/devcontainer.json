@@ -47,5 +47,5 @@
 		"git": "latest"
 	},
 	// Mount local gitconfig
-	"mounts": ["source=${localEnv:HOME}/.gitconfig_local,target=/home/vscode/.gitconfig_local,type=bind,consistency=cached",]
+	"mounts": ["source=${localEnv:HOME}/.gitconfig.local,target=/home/vscode/.gitconfig_local,type=bind,consistency=cached",]
 }
