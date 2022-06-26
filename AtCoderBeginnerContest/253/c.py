@@ -1,8 +1,7 @@
 Q = int(input())
 queries = []
 for _ in range(Q):
-    q = [int(x) for x in input().split()]
-    queries.append(q)
+    queries.append(list(map(int, input().split())))
 
 S = dict()
 min_value = 10 ** 9 + 1
@@ -14,14 +13,20 @@ for q in queries:
         min_value = min(min_value, x)
         max_value = max(max_value, x)
     elif q[0] == 2:
-        x, c = q[1], q[2]
-        S[x] = S.get(x, 0) - min(c, S.get(x, 0))
+        x = q[1]
+        c = q[2]
+        S[x] = S.get(x, 0) - min(S.get(x, 0), c)
         if S[x] == 0:
             S.pop(x, None)
-            if len(S.keys()) > 0:
-                if min_value == x:
+            if min_value == x:
+                if len(S) > 0:
                     min_value = min(S.keys())
-                if max_value == x:
+                else:
+                    min_value = 10 ** 9 + 1
+            if max_value == x:
+                if len(S) > 0:
                     max_value = max(S.keys())
+                else:
+                    max_value = -1
     elif q[0] == 3:
         print(max_value - min_value)
